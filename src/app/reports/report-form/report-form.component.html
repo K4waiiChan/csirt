@@ -1,0 +1,62 @@
+    <h2>REPORTAR VULNERABILIDAD</h2>
+    <mat-card>
+    <form [formGroup]="reportForm" (ngSubmit)="submit()">
+        <mat-form-field  appearance="outline">
+            <mat-label>Titulo de la vulnerabilidad</mat-label>
+            <input matInput formControlName="title" placeholder="Ej: Error xss reflejado ">
+        </mat-form-field>
+        <mat-form-field  appearance="outline">
+            <mat-label>Severidad</mat-label>
+            <mat-select formControlName="severity">
+              <mat-option *ngFor="let level of severityLevels" [value]="level">
+                {{level}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field  appearance="outline">
+            <mat-label>Tipo de Ataque</mat-label>
+            <mat-select formControlName="attackType">
+              <mat-option *ngFor="let attackType of attackTypes" [value]="attackType" >
+                {{attackType}}
+              </mat-option>
+            </mat-select>
+        </mat-form-field>
+        <mat-form-field  appearance="outline">
+            <mat-label>URL / Ubicacion del Error</mat-label>
+            <input matInput formControlName="url" placeholder="Ej: http://md.c/maps?q=1234">
+        </mat-form-field>
+        <mat-form-field  appearance="outline">
+            <mat-label>Descripcion</mat-label>
+            <textarea matInput placeholder="Describe de manera concisa el error." cdkTextareaAutosize cdkAutosizeMaxRows="8"  formControlName="description"></textarea>
+        </mat-form-field>
+        <mat-form-field  appearance="outline">
+            <mat-label>Impacto</mat-label>
+            <textarea matInput placeholder="Describe de manera consisa que impacto tiene el error." cdkTextareaAutosize cdkAutosizeMaxRows="8" formControlName="impact"></textarea>
+        </mat-form-field>
+        <mat-form-field  appearance="outline">
+            <mat-label>Consulta</mat-label>
+            <textarea matInput [placeholder]="requestPlaceholder" cdkTextareaAutosize cdkAutosizeMaxRows="8" cdkAutosizeMinRows="5"  formControlName="request"></textarea>
+        </mat-form-field>
+        <mat-form-field  appearance="outline">
+            <mat-label>Parametro Vulnerable</mat-label>
+            <textarea matInput placeholder="id=1&user=admin etc etc"  cdkTextareaAutosize cdkAutosizeMaxRows="8" formControlName="vulnerability"></textarea>
+        </mat-form-field>
+        <mat-form-field  appearance="outline">
+            <mat-label>Payload</mat-label>
+            <textarea matInput  placeholder="javascript:alert(document.cookie);//"  cdkTextareaAutosize cdkAutosizeMaxRows="8" formControlName="payload"></textarea>
+        </mat-form-field>
+        <mat-form-field  appearance="outline">
+            <mat-label>Prueba de Concepto (PoC)</mat-label>
+            <textarea matInput  cdkTextareaAutosize formControlName="poc"></textarea>
+        </mat-form-field>
+        <mat-form-field  appearance="outline">
+                <mat-label>Pasos de Reproduccion</mat-label>
+                <textarea matInput  cdkTextareaAutosize formControlName="reproSteps"></textarea>
+        </mat-form-field>
+        <mat-form-field  appearance="outline">
+            <mat-label>Contramedidas</mat-label>
+            <textarea matInput  cdkTextareaAutosize formControlName="counterMeasures"></textarea>
+        </mat-form-field>
+        <button mat-button color="primary" [disabled]="!reportForm.valid">Enviar Reporte</button>
+    </form>
+</mat-card>
